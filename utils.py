@@ -4,21 +4,14 @@ import torch.nn.functional as F
 import torchvision
 from torchvision import transforms
 
-from AdaGradNetwork import AdaGradNetwork
+import AdaGradNetwork
 
-
-def loadImages(is_download):
-    test_set = torchvision.datasets.FashionMNIST(
-        root='../data/FashionMNIST',
+myNN = AdaGradNetwork.AdaGradNetwork()
+test_set = torchvision.datasets.FashionMNIST(
+        root='./data/FashionMNIST',
         train=False,
-        download=is_download,
+        download=False,
         transform=transforms.Compose([
             transforms.ToTensor()
         ])
     )
-    return test_set
-
-
-def create_nn():
-    myNN = AdaGradNetwork()
-    return  myNN
