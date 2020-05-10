@@ -1,12 +1,11 @@
+import base64
 import random
+from io import BytesIO
 
 import torch
+import utils
 from PIL import Image
 from flask import Flask, render_template
-import utils
-import matplotlib.pyplot as plt
-import base64
-from io import BytesIO
 
 app = Flask(__name__)
 
