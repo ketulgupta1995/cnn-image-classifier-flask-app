@@ -12,5 +12,25 @@ Classifies the images into one of the following:
          {% endfor %}
     </oi>
 
+        <table border="1px solid black">
+            <tr>
+                <th>Number</th>
+                <th>Image</th>
+                <th>Actual</th>
+                <th>Predicted</th>
+            </tr>
+            {% for image_num in images %}
+            <tr>
+                 <td><div>{{image_num}}</div></td>
+                 <td><img src='data:image/png;base64,{{images[image_num][0]}}'></td>
+                 <td><div>{{images[image_num][1]}}</div></td>
+                 <td>{{images[image_num][2]}}</td>
+            </tr>
+
+
+             {% endfor %}
+        </table>
+
+
 </body>
 </html>

@@ -7,6 +7,7 @@ from torchvision import transforms
 import AdaGradNetwork
 
 myNN = AdaGradNetwork.AdaGradNetwork()
+myNN.load_state_dict(torch.load("./static/FMNIST.pt"))
 test_set = torchvision.datasets.FashionMNIST(
         root='./data/FashionMNIST',
         train=False,
@@ -15,3 +16,16 @@ test_set = torchvision.datasets.FashionMNIST(
             transforms.ToTensor()
         ])
     )
+
+images = {}
+
+categories =['T-shirt/top',
+                                                            'Trouser',
+                                                            'Pullover',
+                                                            'Dress',
+                                                            'Coat',
+                                                            'Sandal',
+                                                            'Shirt',
+                                                            'Sneaker',
+                                                            'Bag',
+                                                            'Ankle boot']
