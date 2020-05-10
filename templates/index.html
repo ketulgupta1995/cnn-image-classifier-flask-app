@@ -5,7 +5,12 @@
     <title>Image Classifier</title>
 </head>
 <body>
-Please choose an imaage from the following categories:
+Classifies the images into one of the following:
+    <oi>
+        {% for category in categories %}
+            <li>{{category}}</li>
+         {% endfor %}
+    </oi>
 
 </body>
 </html>
