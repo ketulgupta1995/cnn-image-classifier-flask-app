@@ -29,9 +29,9 @@ def testuserimage():
     with torch.no_grad():
         outputs = utils.myNN(processed_im.float())
         _, predicted = torch.max(outputs.data, 1)
-    return "" + utils.test_set.classes[predicted] + ""
-
-    # return image_string
+    return render_template("index.html",
+                           default_category="Bag", categories=utils.categories, images=utils.images, form_image_prediction =utils.test_set.classes[predicted])
+    # return "" + utils.test_set.classes[predicted] + ""
 
 
 @app.route('/')
@@ -51,7 +51,8 @@ def hello():
             _, predicted = torch.max(outputs.data, 1)
         utils.images[rand_num].append(utils.test_set.classes[predicted])
     return render_template("index.html",
-                           default_category="Bag", categories=utils.categories, images=utils.images)
+                           default_category="Bag", categories=utils.categories, images=utils.images,
+                           form_image_prediction="")
 
 
 if __name__ == '__main__':

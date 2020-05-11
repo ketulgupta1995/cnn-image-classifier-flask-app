@@ -18,6 +18,10 @@ Classifies the images into one of the following:
     <button type="submit">Test</button>
 </form>
 
+{% if form_image_prediction !="" %}
+         <div>Predicted Class:  <b>{{form_image_prediction}}</b></div>
+{% endif %}
+
 Some random samples from test set with live prediction
         <table border="1px solid black">
             <tr>
