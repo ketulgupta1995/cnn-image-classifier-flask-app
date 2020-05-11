@@ -1,51 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Image Classifier</title>
-</head>
-<body>
-Classifies the images into one of the following:
-    <oi>
-        {% for category in categories %}
-            <li>{{category}}</li>
-         {% endfor %}
-    </oi>
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Image Classifier</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="jumbotron">
+                <div class="page-header">
+                    <h3>Classifies the images into one of the following:</h3>
+                </div>
+                <div class="row">
+                    {% for category in categories %}
+                    <div class=" col-md-1 col-sm-2">{{category}}</div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="form-group row well">
+                <form action="/userimage" enctype="multipart/form-data" method="post">
+                    <label for="imagefile" class=" col-md-4 col-sm-4">Upload your own image a try:</label>
+                    <input accept="image/x-png,image/gif,image/jpeg" id="imagefile" class=" col-md-4 col-sm-4" name="imagefile" type="file"/>
+                    <button type="submit" class=" col-md-4 col-sm-4" class="btn">Test</button>
+                </form>
+                {% if form_image_prediction !="" %}
+                    <div>
+                        Predicted Class: <b>{{form_image_prediction}}</b>
+                    </div>
+                {% endif %}
+            </div>
 
 
-<form action="/userimage"  enctype="multipart/form-data"   method="post">
-    <input type="file" name="imagefile" id = "imagefile" accept="image/x-png,image/gif,image/jpeg" />
-    <button type="submit">Test</button>
-</form>
+            <div class=>
+                <div> Some random samples from test set with live prediction</div>
+                <table class="table-bordered">
+                    <tr>
+                        <th>Number</th>
+                        <th>Image</th>
+                        <th>Actual</th>
+                        <th>Predicted</th>
+                    </tr>
+                    {% for image_num in images %}
+                        <tr>
+                            <td>
+                                <div>{{image_num}}</div>
+                            </td>
+                            <td><img src='data:image;base64,{{images[image_num][0]}}'></td>
+                            <td>
+                                <div>{{images[image_num][1]}}</div>
+                            </td>
+                            <td>{{images[image_num][2]}}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
 
-{% if form_image_prediction !="" %}
-         <div>Predicted Class:  <b>{{form_image_prediction}}</b></div>
-{% endif %}
+        </div>
 
-Some random samples from test set with live prediction
-        <table border="1px solid black">
-            <tr>
-                <th>Number</th>
-                <th>Image</th>
-                <th>Actual</th>
-                <th>Predicted</th>
-            </tr>
-            {% for image_num in images %}
-            <tr>
-                 <td><div>{{image_num}}</div></td>
-                 <td><img src='data:image;base64,{{images[image_num][0]}}'></td>
-                 <td><div>{{images[image_num][1]}}</div></td>
-                 <td>{{images[image_num][2]}}</td>
-            </tr>
-
-
-             {% endfor %}
-        </table>
-
-
-
-
-
-
-</body>
+    </body>
 </html>
