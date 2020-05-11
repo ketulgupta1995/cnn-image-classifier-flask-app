@@ -1,10 +1,7 @@
+import AdaGradNetwork
 import torch
-import torch.nn as nn
-import torch.nn.functional as F
 import torchvision
 from torchvision import transforms
-
-import AdaGradNetwork
 
 myNN = AdaGradNetwork.AdaGradNetwork()
 myNN.load_state_dict(torch.load("./static/FMNIST.pt"))
@@ -17,7 +14,7 @@ test_set = torchvision.datasets.FashionMNIST(
         ])
     )
 
-images = {}
+images = dict()
 
 categories =['T-shirt/top',
                                                             'Trouser',

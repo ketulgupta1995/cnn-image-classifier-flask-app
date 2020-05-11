@@ -12,6 +12,13 @@ Classifies the images into one of the following:
          {% endfor %}
     </oi>
 
+
+<form action="/userimage"  enctype="multipart/form-data"   method="post">
+    <input type="file" name="imagefile" id = "imagefile" accept="image/x-png,image/gif,image/jpeg" />
+    <button type="submit">Test</button>
+</form>
+
+Some random samples from test set with live prediction
         <table border="1px solid black">
             <tr>
                 <th>Number</th>
@@ -22,7 +29,7 @@ Classifies the images into one of the following:
             {% for image_num in images %}
             <tr>
                  <td><div>{{image_num}}</div></td>
-                 <td><img src='data:image/png;base64,{{images[image_num][0]}}'></td>
+                 <td><img src='data:image;base64,{{images[image_num][0]}}'></td>
                  <td><div>{{images[image_num][1]}}</div></td>
                  <td>{{images[image_num][2]}}</td>
             </tr>
@@ -30,6 +37,10 @@ Classifies the images into one of the following:
 
              {% endfor %}
         </table>
+
+
+
+
 
 
 </body>
