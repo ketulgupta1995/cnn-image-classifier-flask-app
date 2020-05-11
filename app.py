@@ -30,7 +30,10 @@ def testuserimage():
         outputs = utils.myNN(processed_im.float())
         _, predicted = torch.max(outputs.data, 1)
     return render_template("index.html",
-                           default_category="Bag", categories=utils.categories, images=utils.images, form_image_prediction =utils.test_set.classes[predicted])
+                           default_category="Bag",
+                           categories=utils.categories,
+                           images=utils.images,
+                           form_image_prediction=utils.test_set.classes[predicted])
     # return "" + utils.test_set.classes[predicted] + ""
 
 
