@@ -15,6 +15,8 @@
 <body>
 <div class="container">
     <div class="jumbotron">
+        <a href="/" >Image Classifier</a>
+<!--        <a href="/model" >Model Details</a>-->
         <div class="page-header">
             <h3>Classifies the images into one of the following:</h3>
         </div>
@@ -28,7 +30,7 @@
     <div class="form-group row well">
         <form action="/userimage" enctype="multipart/form-data" method="post">
             <label class=" col-md-4 col-sm-4 col-xs-4" for="imagefile">Upload your own image to try:</label>
-            <input accept="image/x-png,image/gif,image/jpeg" class=" col-md-4 col-sm-4 col-xs-4" id="imagefile"
+            <input required="true" accept="image/x-png,image/gif,image/jpeg" class=" col-md-4 col-sm-4 col-xs-4" id="imagefile"
                    name="imagefile" type="file"/>
             <button class=" col-md-4 col-sm-4 col-xs-4 btn btn-info" type="submit">Test</button>
         </form>

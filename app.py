@@ -27,13 +27,17 @@ def testuserimage():
     processed_im = processed_im.view(1, 28, 28)
 
     with torch.no_grad():
-        outputs = utils.myNN(processed_im.float())
+        outputs = utils.myNN(processed_im.view(1, 1, 28, 28).float())
         _, predicted = torch.max(outputs.data, 1)
+    prediction = outputs.data.numpy().argsort()[0]
+    first = utils.test_set.classes[prediction[9]]
+    second =utils.test_set.classes[prediction[8]]
+    third = utils.test_set.classes[prediction[7]]
     return render_template("index.html",
                            default_category="Bag",
                            categories=utils.categories,
                            images=utils.images,
-                           form_image_prediction=utils.test_set.classes[predicted])
+                           form_image_prediction="Prediction 1:"+str(first)+" , Prediction 2:"+str(second))
     # return "" + utils.test_set.classes[predicted] + ""
 
 
@@ -50,12 +54,18 @@ def hello():
         utils.images[rand_num].append(img_str.decode("utf-8"))
         utils.images[rand_num].append(utils.test_set.classes[utils.test_set.targets[rand_num]])
         with torch.no_grad():
-            outputs = utils.myNN(utils.test_set.data[rand_num].view(1, 28, 28).float())
+            outputs = utils.myNN(utils.test_set.data[rand_num].view(1, 1, 28, 28).float())  # for simple 1,28,28
             _, predicted = torch.max(outputs.data, 1)
         utils.images[rand_num].append(utils.test_set.classes[predicted])
     return render_template("index.html",
                            default_category="Bag", categories=utils.categories, images=utils.images,
                            form_image_prediction="")
+
+
+@app.route('/model')
+def model():
+    return render_template("model.html")
+
 
 
 if __name__ == '__main__':
