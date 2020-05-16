@@ -37,7 +37,7 @@
 
 <div class="container">
 
-    <div class="card">
+    <div class="card mt-1" >
         <div class="card-header">Classifies the images into one of the following:</div>
         <div class="card-body">
 
@@ -58,7 +58,7 @@
     </div>
 
 
-    <div class="card">
+    <div class="card mt-2">
         <div class="card-header">Try It Yourself:</div>
         <div class="card-body">
             <form action="/userimage" enctype="multipart/form-data" method="post">
@@ -80,7 +80,11 @@
     </div>
 
 
+    <div class ="card mt-2">
+        <div class="card-header"><div>Some live predictions from test-set</div></div>
+    </div>
     <div class="row row-cols-1 row-cols-md-5">
+
         {% for image_num in images %}
         <div class="col mb-4">
             <div class="card">
