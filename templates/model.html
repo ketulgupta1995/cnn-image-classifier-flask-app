@@ -2,11 +2,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Model Details</title>
+    <title>Image Classifier</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<a href="/" >Image Classifier</a>
-Uses pytorch
-CNN
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a class="navbar-brand" href="/">Image Classifier</a>
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a  class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item active">
+            <a   class="nav-link" target="_blank" href="/model">Model Details</a>
+        </li>
+        <li class="nav-item">
+            <a  class="nav-link" target="_blank" href="https://github.com/ketulgupta1995/cnn-image-classifier-flask-app/tree/master">Github Repo</a>
+        </li>
+    </ul>
+</nav>
+<div class="row align-items-center">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <div class="card">
+            <div class="card-header">Implementation Details</div>
+            <div align="center" ><img src="./static/model.png"></div>
+            <div class="card-body">
+                <div class="card-title">Library: pytorch</div>
+                <div class="card-title">Accuracy: 90% on test set</div>
+                <div class="card-title">Training for: 23 epochs</div>
+            </div>
+            <div class="col-1"></div>
+            <!--  <div class="card-footer"></div>-->
+        </div>
+
+    </div>
+</div>
+
+
 </body>
 </html>

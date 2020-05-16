@@ -1,83 +1,88 @@
 <!DOCTYPE html>
-<!-- Latest compiled and minified CSS -->
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Image Classifier</title>
+    <!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a class="navbar-brand" href="/">Image Classifier</a>
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a  class="nav-link active" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+            <a   class="nav-link"  href="/model">Model Details</a>
+        </li>
+        <li class="nav-item">
+            <a  class="nav-link" target="_blank" href="https://github.com/ketulgupta1995/cnn-image-classifier-flask-app/tree/master">Github Repo</a>
+        </li>
+    </ul>
+</nav>
+
 <div class="container">
-    <div class="jumbotron">
-<!--        <a href="/model" >Model Details</a>-->
-        <div class="page-header">
-            <a href="/" >Home</a>
-            <h3>Classifies the images into one of the following:</h3>
-        </div>
-<!--        <div class="row">-->
-<!--            {% for category in categories %}-->
-<!--            <div class=" col-md-1 col-sm-2">{{category}}</div>-->
-<!--            {% endfor %}-->
-<!--        </div>-->
-        <ul class="list-inline">
-                        {% for category in categories %}
-            <li class="list-group-item list-group-item-success ">{{category}}</li>
-            {% endfor %}
-        </ul>
-    </div>
 
-    <div class="form-group row well">
-        <form action="/userimage" enctype="multipart/form-data" method="post">
-            <label class=" col-md-4 col-sm-4 col-xs-4" for="imagefile">Upload your own image to try:</label>
-            <input required="true" accept="image/x-png,image/gif,image/jpeg" class=" col-md-4 col-sm-4 col-xs-4" id="imagefile"
-                   name="imagefile" type="file"/>
-            <button class=" col-md-4 col-sm-4 col-xs-4 btn btn-info" type="submit">Test</button>
-        </form>
-        {% if form_image_prediction !="" %}
-        <div>
-            Predicted Class: <b>{{form_image_prediction}}</b>
-        </div>
-        {% endif %}
-    </div>
-
-    <div>
-        <h5> Some random samples from test set with live prediction</h5>
-    </div>
-<!--    <div class="row">-->
-    {% for image_num in images %}
-    <div style="width:50%;margin:0px;float:right;">
-    <div class="card" >
-        <img src='data:image;base64,{{images[image_num][0]}}'>
+    <div class="card">
+        <div class="card-header">Classifies the images into one of the following:</div>
         <div class="card-body">
-            <p class="card-text">id:{{image_num}}</p>
-            <p class="card-text"><b>Actual:</b> {{images[image_num][1]}}</p>
-            <p class="card-text"><b>Predicted:</b> {{images[image_num][2]}}</p>
-<!--            <p>&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</p>-->
+
+            <!--            <ul class="list-group list-group-horizontal" style="  display: grid !important;-->
+            <!--  grid-template-columns: repeat(2, 1fr);-->
+            <!--  grid-gap: 1em;">-->
+            <!--                {% for category in categories %}-->
+            <!--                <li class="list-group-item list-group-item-success ">{{category}}</li>-->
+            <!--                {% endfor %}-->
+            <!--            </ul>-->
+
+            <div class="row row-cols-3">
+                {% for category in categories %}
+                <div class="col mb-1"><div class ="border border-primary rounded" style="text-align:center">{{category}}</div></div>
+                {% endfor %}
+            </div>
         </div>
     </div>
+
+
+    <div class="card">
+        <div class="card-header">Try It Yourself:</div>
+        <div class="card-body">
+            <form action="/userimage" enctype="multipart/form-data" method="post">
+                <div class="form-row ">
+
+                    <label class=" col" for="imagefile">Upload Image:</label>
+                    <input required="true" accept="image/x-png,image/gif,image/jpeg" class=" col" id="imagefile"
+                           name="imagefile" type="file"/>
+                    <button class=" col btn btn-info" type="submit">Test</button>
+
+                </div>
+            </form>
+            {% if form_image_prediction !="" %}
+            <div>
+                Predicted Class: <b>{{form_image_prediction}}</b>
+            </div>
+            {% endif %}
+        </div>
     </div>
-    <!--                <div class="thumbnail">-->
 
-    <!--                    <img src='data:image;base64,{{images[image_num][0]}}'>-->
-    <!--                    <div class="caption">-->
-    <!--                        <div>id:{{image_num}}</div>-->
-    <!--                        <div>Actual: {{images[image_num][1]}}</div>-->
-    <!--                        <div>Predicted: {{images[image_num][2]}}</div>-->
-    <!--                    </div>-->
-    <!--                </div>-->
 
-    {% endfor %}
-<!--</div>-->
+    <div class="row row-cols-1 row-cols-md-5">
+        {% for image_num in images %}
+        <div class="col mb-4">
+            <div class="card">
+                <img src='data:image;base64,{{images[image_num][0]}}' class="card-img-top" alt="id:{{image_num}}" >
+                <div class="card-body">
+                    <h5 class="card-title"><b>Actual:</b> {{images[image_num][1]}}</h5>
+                    <h5 class="card-title"><b>Predicted:</b> {{images[image_num][2]}}</h5>
+                </div>
+            </div>
+        </div>
+         {% endfor %}
+    </div>
 </div>
-</div>
-
-</div>
-
 </body>
 </html>
